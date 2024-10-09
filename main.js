@@ -1,7 +1,10 @@
 import * as three from 'three'
 import * as dat from 'dat.gui'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import stars from './solar_system/img/stars.jpg'
+//adding image for background
+import stars from './img/stars.jpg'
+import galaxy from  './img/galaxy.jpg'
+import space from  './img/space.jpg'
 const gui = new dat.GUI();
 
 
@@ -11,6 +14,14 @@ const camera = new three.PerspectiveCamera(70 , innerWidth / innerHeight , 0.1 ,
 const rendering = new three.WebGLRenderer({
   canvas : document.querySelector('.bg'),
 });
+//setting up background
+const texture_loader = new three.TextureLoader();
+const bgTexture = texture_loader.load(galaxy)
+bgTexture.colorSpace = three.SRGBColorSpace
+scene.background = bgTexture
+
+
+
 
 rendering.setSize(innerWidth , innerHeight);
 rendering.setPixelRatio(devicePixelRatio);

@@ -5,6 +5,19 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import stars from './img/stars.jpg'
 import galaxy from  './img/galaxy.jpg'
 import space from  './img/space.jpg'
+import Sun from './textures/sun.jpg'
+import Mercury from './textures/mercury.jpg'
+import Venus from './textures/venus.jpg'
+import Earth from './textures/earth.jpg'
+import Moon from './textures/moon.jpg'
+import Mars from './textures/mars.jpg'
+import Jupiter from './textures/jupiter.jpg'
+import Saturn from './textures/saturn.jpg'
+import Saturn_Rings from './textures/saturn_rings.png'
+import Uranus from './textures/uranus.jpg'
+import Neptune from './textures/neptune.jpg'
+
+
 const gui = new dat.GUI();
 
 
@@ -16,7 +29,7 @@ const rendering = new three.WebGLRenderer({
 });
 //setting up background
 const texture_loader = new three.TextureLoader();
-const bgTexture = texture_loader.load(galaxy)
+const bgTexture = texture_loader.load(stars)
 bgTexture.colorSpace = three.SRGBColorSpace
 scene.background = bgTexture
 
@@ -46,8 +59,8 @@ ambient.position.set(5,0,0)
 
 const sun_geo = new three.SphereGeometry(10,64,32);
 const sun_material = new three.MeshStandardMaterial({
-  color : 0xfff000,
-  wireframe : false
+  wireframe : false,
+  map: texture_loader.load(Sun)
 })
 const sun = new three.Mesh(sun_geo,sun_material);
 scene.add(sun);
@@ -55,7 +68,7 @@ sun.position.set(0,0,0)
 //seting up mercury
 const mercury_geo = new three.SphereGeometry(0.0701308035072589,64,32)
 const mercury_material = new three.MeshStandardMaterial({
-  color : 0xA9A9A9,
+  map: texture_loader.load(Mercury),
   wireframe : false
 })
 const mercury = new three.Mesh(mercury_geo,mercury_material);
@@ -64,7 +77,7 @@ mercury.position.set(10.39,0,0)
 //Venus
 const venus_geo = new three.SphereGeometry(0.1739830386660917,64,32)
 const venus_material = new three.MeshStandardMaterial({
-  color : 0xe39e1c,
+  map: texture_loader.load(Venus),
   wireframe : false
 })
 const venus = new three.Mesh(venus_geo,venus_material);
@@ -73,7 +86,7 @@ venus.position.set(10.72,0,0)
 //Earth
 const earth_geo = new three.SphereGeometry(0.1833548943510134,64,32)
 const earth_material = new three.MeshStandardMaterial({
-  color : 0x6b93d6,
+  map: texture_loader.load(Earth),
   wireframe : false
 })
 const earth = new three.Mesh(earth_geo,earth_material);
@@ -82,7 +95,7 @@ earth.position.set(11.11,0,0)
 //Moon
 const moon_geo = new three.SphereGeometry(0.049946816156389264,32)
 const moon_material = new three.MeshStandardMaterial({
-  color : 0xffffffff,
+  map: texture_loader.load(Moon),
   wireframe : false
 })
 const moon = new three.Mesh(moon_geo,moon_material);
@@ -92,7 +105,7 @@ moon.position.set(11.11,0,0.25)
 //Mars
 const mars_geo = new three.SphereGeometry(0.0869565217391304,64,32)
 const mars_material = new three.MeshStandardMaterial({
-  color : 0xc1440e,
+  map: texture_loader.load(Mars),
   wireframe : false
 })
 const mars = new three.Mesh(mars_geo,mars_material);
@@ -101,7 +114,7 @@ mars.position.set(11.52,0,0)
 //Jupiter
 const jupiter_geo = new three.SphereGeometry(2.055253701308035,64,32)
 const jupiter_material = new three.MeshStandardMaterial({
-  color : 0xd1a77f,
+  map: texture_loader.load(Jupiter),
   wireframe : false
 })
 const jupiter = new three.Mesh(jupiter_geo,jupiter_material);
@@ -111,7 +124,7 @@ jupiter.position.set(15.,0,0)
 //Saturn
 const saturn_geo = new three.SphereGeometry(1.732585884720425,64,32)
 const saturn_material = new three.MeshStandardMaterial({
-  color : 0xe2bf7d,
+  map: texture_loader.load(Saturn),
   wireframe : false
 })
 const saturn = new three.Mesh(saturn_geo,saturn_material);
@@ -130,7 +143,7 @@ rings.rotateX(2.041)
 //Uranus
 const uranus_geo = new three.SphereGeometry(0.7347707345120023,64,32)
 const uranus_material = new three.MeshStandardMaterial({
-  color : 0x62aee7,
+  map: texture_loader.load(Uranus),
   wireframe : false
 })
 const uranus = new three.Mesh(uranus_geo,uranus_material);
@@ -139,7 +152,7 @@ uranus.position.set(29.2,0,0)
 //Neptune
 const neptune_geo = new three.SphereGeometry(0.7119160557711657,64,32)
 const neptune_material = new three.MeshStandardMaterial({
-  color : 0x3d5ef9,
+  map: texture_loader.load(Neptune),
   wireframe : false
 })
 const neptune = new three.Mesh(neptune_geo,neptune_material);

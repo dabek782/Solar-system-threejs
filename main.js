@@ -1,7 +1,7 @@
 import * as three from 'three'
 
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-//adding image for background
+//adding textures for planets and images for background
 import stars from '/background_images/stars.jpg'
 import star from '/background_images/star.jpg'
 import galaxy from  '/background_images/galaxy.jpg'
@@ -57,22 +57,25 @@ scene.add(grid_helper);
 const controls =  new OrbitControls(camera, rendering.domElement)
 camera.position.set(20,20,20);
 controls.update();
-// setting up directional light from the sun
-const ambient = new three.AmbientLight(0x333333,1);
-scene.add(ambient);
-ambient.position.set(10,0,0)
+// setting up ambient light from the sun
+const amlight = new three.AmbientLight( 0x404040 );
+scene.add( amlight );
+
 
 
 //setting up sun
 
 const sun_geo = new three.SphereGeometry(10,64,32);
-const sun_material = new three.MeshStandardMaterial({
+const sun_material = new three.MeshBasicMaterial({
   wireframe : false,
   map: texture_loader.load(Sun)
 })
 const sun = new three.Mesh(sun_geo,sun_material);
 scene.add(sun);
 sun.position.set(0,0,0)
+const pointlight = new three.PointLight(0xFFFFFFFF,2,30)
+scene.add(pointlight);
+pointlight.position.set(10,0,0)
 //seting up mercury
 const mercury_geo = new three.SphereGeometry(0.0701308035072589,64,32)
 const mercury_material = new three.MeshStandardMaterial({
@@ -80,7 +83,7 @@ const mercury_material = new three.MeshStandardMaterial({
   wireframe : false
 })
 const mercury = new three.Mesh(mercury_geo,mercury_material);
-scene.add(mercury)
+sun.add(mercury)
 mercury.position.set(10.39,0,0)
 //Venus
 const venus_geo = new three.SphereGeometry(0.1739830386660917,64,32)
@@ -167,19 +170,12 @@ const neptune = new three.Mesh(neptune_geo,neptune_material);
 scene.add(neptune)
 neptune.position.set(40.6,0,0)
 
-//setting up orbits
-
-
-
-
-
-
-
 //animation
 
 function animate(){
   rendering.setAnimationLoop(animate);
   rendering.render(scene , camera)
+  sun.rotateY(0.01)
 
 }
 animate()

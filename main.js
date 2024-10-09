@@ -1,5 +1,10 @@
 import * as three from 'three'
+import * as dat from 'dat.gui'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import stars from './solar_system/img/stars.jpg'
+const gui = new dat.GUI();
+
+
 // configuration of scene camera and rendering
 const scene = new three.Scene()
 const camera = new three.PerspectiveCamera(70 , innerWidth / innerHeight , 0.1 , 1000)
@@ -21,11 +26,15 @@ scene.add(grid_helper);
 const controls =  new OrbitControls(camera, rendering.domElement)
 camera.position.set(20,20,20);
 controls.update();
+// setting up directional light from the sun
+const ambient = new three.AmbientLight(0xfffffff, 3)
+scene.add(ambient);
+ambient.position.set(5,0,0)
 
 //setting up sun
 
 const sun_geo = new three.SphereGeometry(10,64,32);
-const sun_material = new three.MeshBasicMaterial({
+const sun_material = new three.MeshStandardMaterial({
   color : 0xfff000,
   wireframe : false
 })
@@ -34,7 +43,7 @@ scene.add(sun);
 sun.position.set(0,0,0)
 //seting up mercury
 const mercury_geo = new three.SphereGeometry(0.0701308035072589,64,32)
-const mercury_material = new three.MeshBasicMaterial({
+const mercury_material = new three.MeshStandardMaterial({
   color : 0xA9A9A9,
   wireframe : false
 })
@@ -43,7 +52,7 @@ scene.add(mercury)
 mercury.position.set(10.39,0,0)
 //Venus
 const venus_geo = new three.SphereGeometry(0.1739830386660917,64,32)
-const venus_material = new three.MeshBasicMaterial({
+const venus_material = new three.MeshStandardMaterial({
   color : 0xe39e1c,
   wireframe : false
 })
@@ -52,7 +61,7 @@ scene.add(venus)
 venus.position.set(10.72,0,0)
 //Earth
 const earth_geo = new three.SphereGeometry(0.1833548943510134,64,32)
-const earth_material = new three.MeshBasicMaterial({
+const earth_material = new three.MeshStandardMaterial({
   color : 0x6b93d6,
   wireframe : false
 })
@@ -61,7 +70,7 @@ scene.add(earth)
 earth.position.set(11.11,0,0)
 //Moon
 const moon_geo = new three.SphereGeometry(0.049946816156389264,32)
-const moon_material = new three.MeshBasicMaterial({
+const moon_material = new three.MeshStandardMaterial({
   color : 0xffffffff,
   wireframe : false
 })
@@ -71,7 +80,7 @@ moon.position.set(11.11,0,0.25)
 
 //Mars
 const mars_geo = new three.SphereGeometry(0.0869565217391304,64,32)
-const mars_material = new three.MeshBasicMaterial({
+const mars_material = new three.MeshStandardMaterial({
   color : 0xc1440e,
   wireframe : false
 })
@@ -80,7 +89,7 @@ scene.add(mars)
 mars.position.set(11.52,0,0)
 //Jupiter
 const jupiter_geo = new three.SphereGeometry(2.055253701308035,64,32)
-const jupiter_material = new three.MeshBasicMaterial({
+const jupiter_material = new three.MeshStandardMaterial({
   color : 0xd1a77f,
   wireframe : false
 })
@@ -90,7 +99,7 @@ jupiter.position.set(15.,0,0)
 
 //Saturn
 const saturn_geo = new three.SphereGeometry(1.732585884720425,64,32)
-const saturn_material = new three.MeshBasicMaterial({
+const saturn_material = new three.MeshStandardMaterial({
   color : 0xe2bf7d,
   wireframe : false
 })
@@ -99,7 +108,7 @@ scene.add(saturn)
 saturn.position.set(19.54,0,0)
 //Saturn rings
 const rings_geo = new three.TorusGeometry(1.9,0.05,64,32)
-const rings_material = new three.MeshBasicMaterial({
+const rings_material = new three.MeshStandardMaterial({
   color : 0xffe1ab,
   wireframe : false
 })
@@ -109,7 +118,7 @@ rings.position.set(19.54,0,0);
 rings.rotateX(2.041)
 //Uranus
 const uranus_geo = new three.SphereGeometry(0.7347707345120023,64,32)
-const uranus_material = new three.MeshBasicMaterial({
+const uranus_material = new three.MeshStandardMaterial({
   color : 0x62aee7,
   wireframe : false
 })
@@ -118,13 +127,21 @@ scene.add(uranus)
 uranus.position.set(29.2,0,0)
 //Neptune
 const neptune_geo = new three.SphereGeometry(0.7119160557711657,64,32)
-const neptune_material = new three.MeshBasicMaterial({
+const neptune_material = new three.MeshStandardMaterial({
   color : 0x3d5ef9,
   wireframe : false
 })
 const neptune = new three.Mesh(neptune_geo,neptune_material);
 scene.add(neptune)
 neptune.position.set(40.6,0,0)
+
+//setting up orbits
+
+
+
+
+
+
 
 //animation
 

@@ -1,24 +1,22 @@
 import * as three from 'three'
-import * as dat from 'dat.gui'
+
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 //adding image for background
-import stars from './img/stars.jpg'
-import galaxy from  './img/galaxy.jpg'
-import space from  './img/space.jpg'
-import Sun from './textures/sun.jpg'
-import Mercury from './textures/mercury.jpg'
-import Venus from './textures/venus.jpg'
-import Earth from './textures/earth.jpg'
-import Moon from './textures/moon.jpg'
-import Mars from './textures/mars.jpg'
-import Jupiter from './textures/jupiter.jpg'
-import Saturn from './textures/saturn.jpg'
-import Saturn_Rings from './textures/saturn_rings.png'
-import Uranus from './textures/uranus.jpg'
-import Neptune from './textures/neptune.jpg'
-
-
-const gui = new dat.GUI();
+import stars from '/background_images/stars.jpg'
+import star from '/background_images/star.jpg'
+import galaxy from  '/background_images/galaxy.jpg'
+import space from  '/background_images/space.jpg'
+import Sun from '/textures/img/sun.jpg'
+import Mercury from '/textures/img/mercury.jpg'
+import Venus from '/textures/img/venus.jpg'
+import Earth from '/textures/img/earth.jpg'
+import Moon from '/textures/img/moon.jpg'
+import Mars from '/textures/img/mars.jpg'
+import Jupiter from '/textures/img/jupiter.jpg'
+import Saturn from '/textures/img/saturn.jpg'
+import Saturn_Rings from '/textures/img/saturn_rings.png'
+import Uranus from '/textures/img/uranus.jpg'
+import Neptune from '/textures/img/neptune.jpg'
 
 
 // configuration of scene camera and rendering
@@ -28,12 +26,21 @@ const rendering = new three.WebGLRenderer({
   canvas : document.querySelector('.bg'),
 });
 //setting up background
-const texture_loader = new three.TextureLoader();
+/*
 const bgTexture = texture_loader.load(stars)
 bgTexture.colorSpace = three.SRGBColorSpace
-scene.background = bgTexture
-
-
+scene.background = bgTexture*/
+const texture_loader = new three.TextureLoader();
+const cube_background = new three.CubeTextureLoader()
+const texture = cube_background.load([
+  space,
+  space,
+  space,
+  space,
+  space,
+  stars
+])
+scene.background = texture;
 
 
 rendering.setSize(innerWidth , innerHeight);
@@ -51,9 +58,10 @@ const controls =  new OrbitControls(camera, rendering.domElement)
 camera.position.set(20,20,20);
 controls.update();
 // setting up directional light from the sun
-const ambient = new three.AmbientLight(0xfffffff, 3)
+const ambient = new three.AmbientLight(0x333333,1);
 scene.add(ambient);
-ambient.position.set(5,0,0)
+ambient.position.set(10,0,0)
+
 
 //setting up sun
 
@@ -133,7 +141,7 @@ saturn.position.set(19.54,0,0)
 //Saturn rings
 const rings_geo = new three.TorusGeometry(1.9,0.05,64,32)
 const rings_material = new three.MeshStandardMaterial({
-  color : 0xffe1ab,
+  map: texture_loader.load(Saturn_Rings),
   wireframe : false
 })
 const rings = new three.Mesh(rings_geo,rings_material);

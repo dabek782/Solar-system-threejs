@@ -98,9 +98,9 @@ const saturn = new three.Mesh(saturn_geo,saturn_material);
 scene.add(saturn)
 saturn.position.set(19.54,0,0)
 //Saturn rings
-const rings_geo = new three.TorusGeometry(1.9,0.01,64,32)
+const rings_geo = new three.TorusGeometry(1.9,0.05,64,32)
 const rings_material = new three.MeshBasicMaterial({
-  color : 0xffffff,
+  color : 0xffe1ab,
   wireframe : false
 })
 const rings = new three.Mesh(rings_geo,rings_material);

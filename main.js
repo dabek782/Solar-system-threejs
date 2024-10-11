@@ -73,7 +73,7 @@ const sun_material = new three.MeshBasicMaterial({
 const sun = new three.Mesh(sun_geo,sun_material);
 scene.add(sun);
 sun.position.set(0,0,0)
-const pointlight = new three.PointLight(0xFFFFFFFF,5,100)
+const pointlight = new three.PointLight(0xFFFFFFFF,20,300)
 scene.add(pointlight);
 pointlight.position.set(10,0,0)
 
@@ -87,7 +87,7 @@ function createPlanet (size , texture , position){
 const mesh = new three.Mesh(geo,mat);
 const obj = new three.Object3D
 obj.add(mesh)
-scene.add(mesh)
+scene.add(obj)
 
 mesh.position.x = position
 
@@ -113,7 +113,7 @@ const ring_material = new three.MeshBasicMaterial({
 })
 const rings = new three.Mesh(ring_geo , ring_material)
 rings.position.set(19.54,0,0)
-scene.add(rings)
+saturn.obj.add(rings)
 rings.rotation.x = Math.PI/2
 
 
@@ -126,26 +126,33 @@ rings.rotation.x = Math.PI/2
 function animate(){
   rendering.setAnimationLoop(animate);
   rendering.render(scene , camera)
-  //self rotation
-  sun.rotateY(0.04)
-  mercury.mesh.rotateY(0.04)
+  sun.rotateY(0.004)
+  mercury.mesh.rotateY(0.004)
   mercury.obj.rotateY(0.04)
-  venus.mesh.rotateY(0.04)
-  venus.obj.rotateY(0.04)
-  earth.mesh.rotateY(0.04)
-  earth.obj.rotateY(0.04)
-  moon.mesh.rotateY(0.04)
-  moon.obj.rotateY(0.04)
-  mars.mesh.rotateY(0.04)
-  mars.obj.rotateY(0.04)
+
+  venus.mesh.rotateY(0.02)
+  venus.obj.rotateY(0.015)
+
+  earth.mesh.rotateY(0.02)
+  earth.obj.rotateY(0.01)
+
+  moon.mesh.rotateY(0.006)
+  moon.obj.rotateY(0.01)
+
+  mars.mesh.rotateY(0.018)
+  mars.obj.rotateY(0.008)
+
   jupiter.mesh.rotateY(0.04)
-  jupiter.obj.rotateY(0.04)
-  saturn.mesh.rotateY(0.04)
-  saturn.obj.rotateY(0.04)
-  uranus.mesh.rotateY(0.04)
-  uranus.obj.rotateY(0.04)
-  neptune.mesh.rotateY(0.04)
-  neptune.obj.rotateY(0.04)
+  jupiter.obj.rotateY(0.002)
+
+  saturn.mesh.rotateY(0.0038)
+  saturn.obj.rotateY(0.0009)
+
+  uranus.mesh.rotateY(0.03)
+  uranus.obj.rotateY(0.0004)
+
+  neptune.mesh.rotateY(0.032)
+  neptune.obj.rotateY(0.0001)
 
 }
 animate()

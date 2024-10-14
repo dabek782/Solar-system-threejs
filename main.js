@@ -116,9 +116,17 @@ rings.position.set(19.54,0,0)
 saturn.obj.add(rings)
 rings.rotation.x = Math.PI/2
 
-
-
-
+//3d background
+const bg_geo = new three.SphereGeometry(1000,64,32);
+const bg_mesh = new three.MeshBasicMaterial({
+  wireframe:false,
+  map:texture_loader.load(stars),
+  side:three.DoubleSide
+  
+});
+const bg = new three.Mesh(bg_geo,bg_mesh)
+scene.add(bg)
+bg.position.set(0,0,0)
 
 
  

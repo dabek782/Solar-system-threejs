@@ -57,6 +57,8 @@ rendering.setClearColor(0x0000000)
 //setting up mouse control
 const controls =  new OrbitControls(camera, rendering.domElement)
 camera.position.set(20,20,20);
+controls.minPolarAngle= 0;
+controls.maxDistance = 40
 controls.update();
 
 
@@ -73,7 +75,7 @@ const sun_material = new three.MeshBasicMaterial({
 const sun = new three.Mesh(sun_geo,sun_material);
 scene.add(sun);
 sun.position.set(0,0,0)
-const pointlight = new three.PointLight(0xFFFFFFFF,20,300)
+const pointlight = new three.PointLight(0xFFFFFFFF,55,30)
 scene.add(pointlight);
 pointlight.position.set(10,0,0)
 
